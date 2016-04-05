@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>UW Web - Localization and Translation</title>
+
+		<meta name="description" content="UW Web presenation by the Clinical Informatics Research Group">
+		<meta name="author" content="Mark Stewart">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<style>
+		div.overlay-box {
+			background-color: rgba(253, 246, 227, 0.9);
+			padding: 40px 20px;
+		}
+		.left-box {
+			float: left;
+			width: 45%;
+			margin-right: 5%;
+		}
+		.right-box {
+			float: left;
+			width: 50%;
+		}
+		img.limit-img {
+			max-height: 500px;
+		}
+		</style>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Translating Web Copy</h1>
+					<h2>Localizing without tearing your hair out</h2>
+					<p>Ivan Cvitkovic, Software Developer<br />
+						Mark Stewart, User Experience Engineer<br />
+						Clinical Informatics Research Group</p>
+				</section>
+
+				<section>
+					<h2>Our Systems</h2>
+					<p>We build Computerized Patient Reported Outcomes (cPRO) apps. Our apps need to support the patient population.</p>
+					<p>We have two main codebases that power many apps.</p>
+						<div class="left-box fragment">
+							<h3>DHAIR 1</h3>
+							<p>Basic PHP, developed for more than 10 years</p>
+							<p>Languages include Spanish, Amharic</p>
+							<p>Localization is very basic.</p>
+						</div>
+						<div class="right-box fragment"> 
+							<h3>DHAIR 2</h3>
+							<p>Newer codebase, apps in a variety of domains.</p>
+
+						</div>
+					<aside class="notes">
+						When I started it was a mish-mash of different styles and particularly Javascript libraries.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h2>Bootstrap</h2>
+						<q>A HTML, CSS and Javascript framework for developing responsive, mobile first projects from the web.</q>
+						<p>Originally built at Twitter, open-sourced to the world.</p>
+						<div class="fragment">
+							<hr />
+							<p>More about Bootstrap?</p>
+						</div>					
+					</section>
+					<section data-background="img/498818720_fd5f67c00e_b.jpg">
+					<div class="overlay-box">
+						<h2>Why Use It?</h2>
+						<ul>
+							<li>Easy to get started, good documentation, huge community</li>
+							<li>Mobile-first (with 3.0) with easy-to-implement responsive design</li>
+							<li>Solid set of components and base elements</li>
+							<li>Javascript plugins allow for easy frontend interactions</li>
+							<li>A little designer zing when you don't have one</li>
+						</ul>
+						</div>
+					</section>
+					<section>
+						<h2>The Grid System</h2>
+						<pre><code data-trim contenteditable>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3">
+			A left column
+		</div>
+		<div class="col-sm-6">
+			Our main one
+		</div>
+		<div class="col-sm-3">
+			A right column
+		</div>
+	</div>
+</div>
+					</code></pre>
+
+					<p>A quick example of what can be done: <a href="http://depts.washington.edu/hprc/">before</a> and <a href="../uw-demo-site.html">after</a>.</p>
+					</section>
+					<section data-background="http://i.giphy.com/uepXBbKaOtm2Q.gif">
+						<div class="overlay-box">
+							<h2>Why Avoid It?</h2>
+							<ul>
+								<li>Everyone uses it <span style="color: #333" class="fragment" data-fragment-index="1">(Guilty, officer)</span></li>
+								<li>It can become a crutch <span style="color: #333" class="fragment" data-fragment-index="2">(I was limping)</span></li>
+								<li>Bloated for a simple site <span style="color: #333" class="fragment" data-fragment-index="3">(Only take what you need)</span></li>
+								<li>Really, it's everywhere <span style="color: #333" class="fragment" data-fragment-index="4">(You know what? Most people don't care. Or notice. And you can customize.)</span></li>
+							</ul>
+							
+
+						</div>
+						
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>LESS (and SASS)</h2>
+						<p>Pre-processing! Brings "real" coding to CSS. More maintainable, themable and extendable. Originally Ruby, now written in Javascript.</p>
+						<div class="fragment">
+							<hr />
+							<p>More about LESS?</p>
+						</div>	
+
+						<aside class="notes">
+							It uses loops, can do calculations, it compiles.<br /><br />
+							SASS is a little more sophisticated, maybe better. Requires Ruby.<br /><br />
+							Either one is vastly better than just CSS.
+						</aside>
+					</section>
+					<section>
+						<h2>Variables</h2>
+						<p>Don't repeat yourself!</p>
+						<div>
+						<pre><code data-trim contenteditable>
+// Set the variable once
+@uwPurple: #4b2e83;
+// Then use throughout
+h1, h2, h3 {
+	color: @uwPurple;
+}
+.footer {
+	background-color: @uwPurple;
+}
+// Get fancy
+.light-background {
+	background-color: lighten(@uwPurple, 20%);
+}
+
+// Compiles to
+h1, h2, h3 {
+	color: #4b2e83;
+}
+.footer {
+	background-color: #4b2e83;
+}
+.light-background {
+	background-color: #7a54c3;
+}
+
+						</code></pre>
+						</div>
+					</section>
+					<section>
+						<h2>Nesting</h2>
+						<p>Stay sane. But beware too many descendants!</p>
+						<div>
+						<pre><code data-trim contenteditable>
+.main-content {
+	padding: 1em 2em;
+	.highlight {
+		font-size: 20px;
+		color: @uwPurple;
+		&.alt {
+			color: #fff;
+			background-color: darken(@uwPurple, 10%);
+		}
+	}
+}
+// Compiles to
+.main-content {
+  padding: 1em 2em;
+}
+.main-content .highlight {
+  font-size: 20px;
+  color: #4b2e83;
+}
+.main-content .highlight.alt {
+  color: #fff;
+  background-color: #35215d;
+}
+
+// Lots of other LESS options to reverse order, etc.
+h1 {
+  color: red;
+  .alt-container & {
+    color: blue;  
+  }
+}
+// Compiles to
+h1 {
+  color: red;
+}
+.alt-container h1 {
+  color: blue;
+}
+
+
+						</code></pre>
+						</div>
+					</section>					
+					<section>
+						<h2>Compiling</h2>
+						<p>Not <em>quite</em> as easy as CSS. Some ways to compile:</p>
+						<ul>
+							<li class="fragment">In browser. <p clas="fragment">Yuck.</p></li>
+							<div class="fragment">
+								<li>Command line</li>
+								<li>Compiler apps with watchers</li>
+								<li>Built-in support in IDEs</li>
+								<li>Server-side compilers</li>
+							</div>
+						</ul>
+						
+					</section>					
+				</section>
+
+				<section>
+					<section>
+						<h2>How We Use It</h2>
+						<img src="img/cpro1.png" />
+					</section>
+					<section>
+						<p>We keep our variables in one spot and override by theme.</p>
+						<code>bootstrap.less</code>
+						<img src="img/cpro2.png" />
+						<code>cpro.less</code>
+						<img src="img/cpro3.png" />
+					</section>
+					<section>
+						<p>All variables set, including Bootstrap overrides</p>
+						<code>crpo/variables.less</code>
+						<img src="img/cpro4.png" class="limit-img" />
+					</section>	
+					<section>
+						<h4>Customizing by instance</h4>
+						<p>Easy deployment of different designs. First we make sure instance-specific styles go at the end of the main CSS.</p>
+						<code>crpo/main.less</code>
+						<img src="img/cpro5.png" class="limit-img" />
+					</section>	
+					<section>
+						<h4>Customizing by instance</h4>
+						<p>Then we can pass variables that we want to change as we as styles used only for this instance.</p>
+						<code>cpro/overrides.qoltracker.png</code>
+						<img src="img/cpro6.png" class="limit-img" />
+					</section>			
+				</section>
+
+				<section>
+					<h2>Resources</h2>
+					<p>Presentation available on <a href="http://staff.washington.edu/mark47/uw-frontend/">my UW site</a> or <a href="https://github.com/mark47/uw-frontend">Github</a>.</p>
+					<ul>
+						<li><a href="http://less2css.org/">LESS2CSS live editing</a></li>
+						<li><a href="http://www.helloerik.com/bootstrap-3-less-workflow-tutorial">LESS and Bootstrap Workflow Tutorial</a></li>
+						<li><A href="https://gist.github.com/chriseppstein/674726">SASS and LESS comparison</A></li>
+						<li><a href="http://lessphp.gpeasy.com/">PHP LESS Compiler</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<p>I'm happy to talk more or share details about CIRG's work.</p>
+					<p>Mark Stewart<br /><a href="mailto:mark47@uw.edu">mark47@uw.edu</a> | @MrMarkStewart</p>
+					<p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
