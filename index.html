@@ -87,6 +87,71 @@
 
 				<section>
 					<section>
+						<h2>gettext</h2>
+						<q>i18n system for multilangual programs</q>
+						<p>Filetypes defined by GNU gettext</p>
+						<ul>
+						<li>Portable Object Template</li>
+						<li>Portable Object</li>
+						<li>Machine Object</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Portable Object Template</h3>
+						<q>Template for Object File</q>
+<pre><code data-trim contenteditable>
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2008-02-06 16:25-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME \n"
+"Language-Team: LANGUAGE \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+
+####
+
+#: View/Elements/funding.ctp:12
+msgid "Funding for %s was made possible by the following funding:"
+msgstr ""
+					</code></pre>
+
+						</code>
+					</section>
+					<section>
+						<h3>Portable Object</h3>
+						<q>AKA String Catalog</q>
+						<br />
+						<br />
+						<ul>
+						<li>One file per translated language</li>
+						<li>Keyed by language code eg <em>es_MX</em></li>
+						</ul>
+<pre><code data-trim contenteditable>
+# es_MX.po
+###
+
+#: View/Elements/funding.ctp:12
+msgid "Funding for %s was made possible by the following funding:"
+msgstr "Financiamiento por %s ha sido posible por el financiamiento siguiente:"
+					</code></pre>
+
+						</code>
+					</section>
+				</section>
+				<section>
+				<section>
+				<h3>Lots of files</h3>
+				<em>How do you manage them all without tedium?</em>
+				<ul>
+				<li>Multiple Versions</li>
+				<li>Emailed/attached copies</li>
+				<li>Small incremental changes</li>
+				<li>Tribal Knowledge</li>
+				</ul>
+				</section>
+
+					<section>
 						<h2>Bootstrap</h2>
 						<q>A HTML, CSS and Javascript framework for developing responsive, mobile first projects from the web.</q>
 						<p>Originally built at Twitter, open-sourced to the world.</p>
